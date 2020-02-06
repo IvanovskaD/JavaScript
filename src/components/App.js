@@ -1,45 +1,64 @@
 import React from 'react';
-import {Welcome} from './Welcome';
-import {Hotel} from './Hotel';
-import {User} from './User';
-import {FruitList} from './FruitList';
+import {Map} from './Map';
+
 
 export class App extends React.Component{
 
+  constructor(props){
+    super(props);
+    this.state={
+
+      username:"",
+      password:""
+
+    }
+  }
+
+ 
+  usernameChangeHandler = (event) => {
+    this.setState({
+      username: event.target.value
+    })
+  }
+
+  passwordChangeHandler = (event) => {
+    this.setState({
+      password: event.target.value
+    })
+  }
+  
   render(){
 
-    var godiniFilip = 25;
-    var godiniPero = 18;
-    var hasVacancy = false;
-    var adress = {
-      ulica: "vodnjanska",
-      broj: "12"
-    }
-    var user = {
-      ime:"Dragana",
-      prezime: "Ivanovska",
-      email: "ivanovskadragana.94@gmail.com",
-      image: "https://i.pinimg.com/originals/0e/1e/8a/0e1e8ace2d78fe052f607aae724720e7.jpg",
-      address: adress
-
-    }
-
-    var fruits = ["orange", "peach", "apple", "banana", "strawberry"]
+    var niza = [
+      {naslov:"Pulp Fiction", image:"https://upload.wikimedia.org/wikipedia/en/3/3b/Pulp_Fiction_%281994%29_poster.jpg"},
+      {naslov:"Back To the Future", image:"https://upload.wikimedia.org/wikipedia/en/thumb/d/d2/Back_to_the_Future.jpg/220px-Back_to_the_Future.jpg"},
+      {naslov:"The Godfather", image:"https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg"}
+    ]
 
     return(
       <div>
-      <h2>Welcome</h2>
-      <Welcome name={"Filip"} age={godiniFilip}/>
-      <Welcome name={"Filip"} age={godiniPero}/>
-      <hr/>
-      <Hotel imaSobi= {hasVacancy}/>
-      <br/>
-      <br/>
-      <User korisnik={user}/>
-      <hr/>
-      <FruitList list={fruits}/>
-      </div>
-    )
-  }
+        {/* <Map filmovi={niza}/> */}
+        <input 
+        value={this.state.username}
+        name="username"
+        type="text" 
+        onChange={this.usernameChangeHandler}
+        placeholder="Username"
+        />
+       <h2>{this.state.username}</h2>
 
+        <br/>
+        <input
+        value={this.state.password}
+        name="password"
+        type="text"
+        placeholder="Password"
+        onChange={this.passwordChangeHandler}
+        />
+        <h2>{this.state.password}</h2>
+      </div>
+
+    )
+
+  }
 }
